@@ -22,15 +22,16 @@ def help():
     print("""Logitech G560 Gaming Speaker LED control
 
 Usage:
-\tg560-led help - This help
+\tg560-led [help|--help|-h] - This help
 \tg560-led solid {color} - Solid color mode
 \tg560-led cycle [{rate} [{brightness}]] - Cycle through all colors
 \tg560-led breathe {color} [{rate} [{brightness}]] - Single color breathing
+\tg560-led off - Turn lights off
 
 Arguments:
-\tColor: RRGGBB (RGB hex value)
-\tRate: 100-60000 (Number of milliseconds. Default: 10000ms)
-\tBrightness: 0-100 (Percentage. Default: 100%)""")
+\tcolor: RRGGBB (RGB hex value)
+\trate: 100-60000 (Value in milliseconds. Default: 10000ms)
+\tbrightness: 0-100 (Percentage. Default: 100%)""")
 
 
 def main():
@@ -55,6 +56,8 @@ def main():
             process_rate(args[3]),
             process_brightness(args[4])
         )
+    if mode == 'off':
+        set_led_solid(process_color('000000'))
     else:
         print_error('Unknown mode.')
 

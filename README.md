@@ -17,18 +17,26 @@ virtualenv ./env
 env/bin/pip install -r requirements.txt
 ```
 
+**Test**
+
+```bash
+sudo ./g560-led.py solid 00FF00
+```
+
 ## Usage
 
 ```text
 Usage:
+    g560-led [help|--help|-h] - This help
     g560-led solid {color} - Solid color mode
     g560-led cycle [{rate} [{brightness}]] - Cycle through all colors
     g560-led breathe {color} [{rate} [{brightness}]] - Single color breathing
+    g560-led off - Turn lights off
 
 Arguments:
-    Color: RRGGBB (RGB hex value)
-    Rate: 100-60000 (Number of milliseconds. Default: 10000ms)
-    Brightness: 0-100 (Percentage. Default: 100%)
+    color: RRGGBB (RGB hex value)
+    rate: 100-60000 (Value in milliseconds. Default: 10000ms)
+    brightness: 0-100 (Percentage. Default: 100%)
 ```
 
 Note that the g560 has four independent lights: currently this script will set all to the same color.
