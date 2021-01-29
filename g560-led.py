@@ -40,13 +40,11 @@ def main():
         sys.exit()
 
     args = sys.argv + [None] * (5 - len(sys.argv))
-
-    if (args[1] in ['--help', '-h', 'help']):
+    mode = args[1]
+    if (mode in ['--help', '-h', 'help']):
         help()
         sys.exit()
-
-    mode = args[1]
-    if mode == 'solid':
+    elif mode == 'solid':
         set_led_solid(process_color(args[2]))
     elif mode == 'cycle':
         set_led_cycle(process_rate(args[2]), process_brightness(args[3]))
@@ -56,9 +54,10 @@ def main():
             process_rate(args[3]),
             process_brightness(args[4])
         )
-    if mode == 'off':
+    elif mode == 'off':
         set_led_solid(process_color('000000'))
     else:
+        print('hey?')
         print_error('Unknown mode.')
 
 
