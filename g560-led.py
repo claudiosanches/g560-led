@@ -22,6 +22,7 @@ def help():
     print("""Logitech G560 Gaming Speaker LED control
 
 Usage:
+\tg560-led help - This help
 \tg560-led solid {color} - Solid color mode
 \tg560-led cycle [{rate} [{brightness}]] - Cycle through all colors
 \tg560-led breathe {color} [{rate} [{brightness}]] - Single color breathing
@@ -33,11 +34,15 @@ Arguments:
 
 
 def main():
-    if(len(sys.argv) < 2):
+    if (len(sys.argv) < 2):
         help()
         sys.exit()
 
     args = sys.argv + [None] * (5 - len(sys.argv))
+
+    if (args[1] in ['--help', '-h', 'help']):
+        help()
+        sys.exit()
 
     mode = args[1]
     if mode == 'solid':
@@ -50,8 +55,6 @@ def main():
             process_rate(args[3]),
             process_brightness(args[4])
         )
-    elif mode == 'intro':
-        set_intro_effect(args[2])
     else:
         print_error('Unknown mode.')
 
@@ -116,17 +119,6 @@ def set_led(mode, data):
     send_command(prefix + right_secondary + mode + data + suffix)
     send_command(prefix + left_primary + mode + data + suffix)
     send_command(prefix + right_primary + mode + data + suffix)
-
-
-def set_intro_effect(arg):
-    if arg == 'on' or arg == '1':
-        toggle = '01'
-    elif arg == 'off' or arg == '0':
-        toggle = '02'
-    else:
-        print_error('Invalid value.')
-
-    send_command('11ff043a0001'+toggle+'00000000000000000000000000')
 
 
 def send_command(data):
