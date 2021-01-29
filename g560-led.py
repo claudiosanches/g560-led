@@ -19,12 +19,12 @@ wIndex = None
 
 
 def help():
-    print("""Logitech G403 G560 Gaming Speaker LED control
+    print("""Logitech G560 Gaming Speaker LED control
 
 Usage:
-\tg403-led solid {color} - Solid color mode
-\tg403-led cycle [{rate} [{brightness}]] - Cycle through all colors
-\tg403-led breathe {color} [{rate} [{brightness}]] - Single color breathing
+\tg560-led solid {color} - Solid color mode
+\tg560-led cycle [{rate} [{brightness}]] - Cycle through all colors
+\tg560-led breathe {color} [{rate} [{brightness}]] - Single color breathing
 
 Arguments:
 \tColor: RRGGBB (RGB hex value)
